@@ -1,14 +1,5 @@
-class HashMap {
-    constructor
+import {HashMap} from './hashmap.js'
 
-    hash(key) {
-        let hashCode = 0;
+const hashMap = new HashMap();
 
-        const primeNumber = 31;
-        for (let i = 0; i < key.length; i++) {
-            hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % 16;
-        }
-
-        return hashCode;
-    }
-}
+console.log(hashMap.hash('bllaho'))

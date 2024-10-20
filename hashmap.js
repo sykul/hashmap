@@ -1,5 +1,7 @@
 class HashMap {
-    constructor
+    constructor() {
+        this.arraySize = 16 ;
+    }
 
     hash(key) {
         let hashCode = 0;
@@ -12,3 +14,5 @@ class HashMap {
         return hashCode;
     }
 }
+
+export {HashMap}
