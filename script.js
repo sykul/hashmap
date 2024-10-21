@@ -2,4 +2,4 @@ import {HashMap} from './hashmap.js'
 
 const hashMap = new HashMap();
 
-console.log(hashMap.hash('bllaho'))
+hashMap.set('ksdsl7dfasdey','valueblah')
