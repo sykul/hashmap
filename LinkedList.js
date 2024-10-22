@@ -14,7 +14,7 @@ class LinkedList {
     this.length = 1;
   }
 
-  append(value) {
+  append(key, value) {
     let tmp = this.head;
     while (tmp.next !== null) {
       tmp = tmp.next;

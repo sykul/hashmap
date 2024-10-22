@@ -4,6 +4,8 @@ class HashMap {
   constructor() {
     this.array = [];
     this.arraySize = 16;
+    this.arrayUsedSpaces = 0;
+    this.loadFactor = 0;
   }
 
   hash(key) {
@@ -11,19 +13,28 @@ class HashMap {
 
     const primeNumber = 31;
     for (let i = 0; i < key.length; i++) {
-      hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % 16;
+      hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.arraySize;
     }
 
     return hashCode;
   }
 
+  doubleArraySizeIfLoadFactorSurpassed() {
+    if (this.loadFactor > 0.75) {
+      this.arraySize = this.arraySize * 2;
+      this.loadFactor = +(this.arrayUsedSpaces / this.arraySize).toFixed(3);
+    }
+  }
+
   set(key, value) {
+    this.arrayUsedSpaces = this.arrayUsedSpaces + 1;
+    this.loadFactor = +(this.arrayUsedSpaces / this.arraySize).toFixed(3);
+    this.doubleArraySizeIfLoadFactorSurpassed();
     let hashCode = this.hash(key);
     if (this.array[hashCode] === undefined) {
-      this.array[hashCode] = new LinkedList(key, value, null)
-      console.log(this.array);
+      this.array[hashCode] = new LinkedList(key, value, null);
     } else {
-      console.log("ssdfsd");
+      this.array[hashCode].append(key, value)
     }
   }
 }
