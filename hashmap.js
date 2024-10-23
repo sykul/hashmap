@@ -57,6 +57,16 @@ class HashMap {
       return listToCheck.containsKey(key);
     }
   }
+
+  remove(key) {
+    let currentHash = this.hash(key);
+    if (this.array[currentHash] === undefined) {
+      return false;
+    } else {
+      let listToCheck = this.array[currentHash];
+      return listToCheck.containsKey(key);
+    }
+  }
 }
 
 export { HashMap };
