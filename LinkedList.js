@@ -13,13 +13,21 @@ class LinkedList {
     this.length = 1;
   }
 
-  append(key, value) {
+  append(newKey, newValue) {
     let tmp = this.head;
+    if (tmp.key === newKey) {
+      tmp.value = newValue;
+      return;
+    }
     while (tmp.next !== null) {
+      if (tmp.key === newKey) {
+        tmp.value = newValue;
+        return;
+      }
       tmp = tmp.next;
     }
-    tmp.next = new ListNode(key, value, null);
-    this.tail = tmp.next;
+    tmp.next = new ListNode(newKey, newValue, null);
+    this.tail = tmp.next
     this.length += 1;
   }
 

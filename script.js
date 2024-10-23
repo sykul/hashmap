@@ -15,4 +15,4 @@ test.set("jacket", "blue");
 test.set("ice cream", "white");
 test.set("jacket", "blue");
 
-console.log(test.array[14])
+console.log(test)
