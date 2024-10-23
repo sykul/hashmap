@@ -17,18 +17,19 @@ class LinkedList {
     let tmp = this.head;
     if (tmp.key === newKey) {
       tmp.value = newValue;
-      return;
+      return false;
     }
     while (tmp.next !== null) {
       if (tmp.key === newKey) {
         tmp.value = newValue;
-        return;
+        return false;
       }
       tmp = tmp.next;
     }
     tmp.next = new ListNode(newKey, newValue, null);
     this.tail = tmp.next
     this.length += 1;
+    return true;
   }
 
   prepend(value) {

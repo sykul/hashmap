@@ -27,15 +27,16 @@ class HashMap {
   }
 
   set(key, value) {
-    this.arrayUsedSpaces = this.arrayUsedSpaces + 1;
-    this.loadFactor = +(this.arrayUsedSpaces / this.arraySize).toFixed(3);
-    this.doubleArraySizeIfLoadFactorSurpassed();
+
     let hashCode = this.hash(key);
     if (this.array[hashCode] === undefined) {
       this.array[hashCode] = new LinkedList(key, value, null);
-    } else {
-      this.array[hashCode].append(key, value);
+      this.arrayUsedSpaces = this.arrayUsedSpaces + 1;
+    } else if (this.array[hashCode].append(key, value)) {
+      this.arrayUsedSpaces = this.arrayUsedSpaces + 1;
     }
+    this.loadFactor = +(this.arrayUsedSpaces / this.arraySize).toFixed(3);
+    this.doubleArraySizeIfLoadFactorSurpassed();
   }
 
   get(key) {
