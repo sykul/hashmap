@@ -98,6 +98,18 @@ class LinkedList {
     return null;
   }
 
+  findValueOfKey(searchKey) {
+    // return index of node containing value, or null if not found
+    let tmpNode = this.head;
+    for (let i = 0; i < this.length; i++) {
+      if (tmpNode.key === searchKey) {
+        return tmpNode.value;
+      }
+      tmpNode = tmpNode.next;
+    }
+    return null;
+  }
+
   toString() {
     // represents LinkedList objects as strings
     // format: ( value ) -> ( value ) -> ( value ) -> null

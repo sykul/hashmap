@@ -34,7 +34,17 @@ class HashMap {
     if (this.array[hashCode] === undefined) {
       this.array[hashCode] = new LinkedList(key, value, null);
     } else {
-      this.array[hashCode].append(key, value)
+      this.array[hashCode].append(key, value);
+    }
+  }
+
+  get(key) {
+    let currentHash = this.hash(key);
+    if (this.array[currentHash] !== undefined) {
+      let listToCheck = this.array[currentHash];
+      return listToCheck.findValueOfKey(key)
+    } else {
+      return null;
     }
   }
 }
