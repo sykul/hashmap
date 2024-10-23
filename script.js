@@ -14,7 +14,7 @@ test.set("ice cream", "white");
 test.set("jacket", "blue");
 test.set("ice cream", "white");
 test.set("jacket", "blue");
-console.log(test.get("jacket"));
+console.log(test.has("blue"));
 
 /* 
 console.log(test);

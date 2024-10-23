@@ -40,11 +40,21 @@ class HashMap {
 
   get(key) {
     let currentHash = this.hash(key);
-    if (this.array[currentHash] !== undefined) {
-      let listToCheck = this.array[currentHash];
-      return listToCheck.findValueOfKey(key)
-    } else {
+    if (this.array[currentHash] === undefined) {
       return null;
+    } else {
+      let listToCheck = this.array[currentHash];
+      return listToCheck.findValueOfKey(key);
+    }
+  }
+
+  has(key) {
+    let currentHash = this.hash(key);
+    if (this.array[currentHash] === undefined) {
+      return null;
+    } else {
+      let listToCheck = this.array[currentHash];
+      return listToCheck.containsKey(key);
     }
   }
 }
