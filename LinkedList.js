@@ -8,9 +8,8 @@ class ListNode {
 
 class LinkedList {
   constructor(initialKey, initialValue) {
-    this.node = new ListNode(initialKey, initialValue, null);
-    this.head = { ...this.node };
-    this.tail = { ...this.node };
+    this.head = new ListNode(initialKey, initialValue, null);
+    this.tail = { ...this.head };
     this.length = 1;
   }
 
@@ -19,7 +18,7 @@ class LinkedList {
     while (tmp.next !== null) {
       tmp = tmp.next;
     }
-    tmp.next = new ListNode(value, null);
+    tmp.next = new ListNode(key, value, null);
     this.tail = tmp.next;
     this.length += 1;
   }
@@ -134,6 +133,35 @@ class LinkedList {
     }
     myString = `${myString} -> ( ${tmpNode} )`;
     return myString;
+  }
+
+  deleteNodeByKey(searchKey) {
+    if (this.head === null) {
+      return false;
+    } else if (this.head.key === searchKey) {
+      this.head = this.head.next;
+      this.tail = null;
+      this.length = this.length - 1;
+      return true;
+    }
+
+    let previousNode = this.head;
+    let currentNode = previousNode.next;
+    while (currentNode !== null) {
+      if (currentNode.key === searchKey) {
+        previousNode.next = currentNode.next;
+        this.length = this.length - 1;
+
+        if (currentNode.next === null) {
+          this.tail = previousNode;
+        }
+        return true;
+      }
+      currentNode = currentNode.next;
+      this.tail = currentNode.next;
+    }
+
+    return false;
   }
 
   // extra credit

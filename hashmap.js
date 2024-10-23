@@ -64,7 +64,7 @@ class HashMap {
       return false;
     } else {
       let listToCheck = this.array[currentHash];
-      return listToCheck.containsKey(key);
+      return listToCheck.deleteNodeByKey(key);
     }
   }
 }
