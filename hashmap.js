@@ -19,15 +19,25 @@ class HashMap {
     return hashCode;
   }
 
-  doubleArraySizeIfLoadFactorSurpassed() {
-    if (this.loadFactor > 0.75) {
-      this.arraySize = this.arraySize * 2;
-      this.loadFactor = +(this.arrayUsedSpaces / this.arraySize).toFixed(3);
-    }
+  doubleArraySize() {
+    this.arraySize = this.arraySize * 2;
+    let tmpArray = [];
+    this.array.forEach((item) => {
+      let tmpNode = item.head;
+      while (tmpNode !== null) {
+        let hashCode = this.hash(tmpNode.key);
+        if (tmpArray[hashCode] === undefined) {
+          tmpArray[hashCode] = new LinkedList(tmpNode.key, tmpNode.value, null);
+        } else {
+          tmpArray[hashCode].append(tmpNode.key, tmpNode.value);
+        }
+        tmpNode = tmpNode.next;
+      }
+    });
+    this.loadFactor = +(this.arrayUsedSpaces / this.arraySize).toFixed(3);
   }
 
   set(key, value) {
-
     let hashCode = this.hash(key);
     if (this.array[hashCode] === undefined) {
       this.array[hashCode] = new LinkedList(key, value, null);
@@ -36,7 +46,9 @@ class HashMap {
       this.arrayUsedSpaces = this.arrayUsedSpaces + 1;
     }
     this.loadFactor = +(this.arrayUsedSpaces / this.arraySize).toFixed(3);
-    this.doubleArraySizeIfLoadFactorSurpassed();
+    if (this.loadFactor > 0.75) {
+      this.doubleArraySize();
+    }
   }
 
   get(key) {
