@@ -110,9 +110,53 @@ class HashMap {
   clear() {
     this.arraySize = 16;
     this.arrayUsedSpaces = 0;
-    this.array = []
+    this.array = [];
     this.loadFactor = 0;
   }
+
+  keys() {
+    let newArray = [];
+    this.array.forEach((list) => {
+      if (list !== undefined) {
+        let tmpNode = list.head;
+        while (tmpNode !== null) {
+          newArray.push(tmpNode.key);
+          tmpNode = tmpNode.next;
+        }
+      }
+    });
+    return newArray;
+  }
+
+  values() {
+    let newArray = [];
+    this.array.forEach((list) => {
+      if (list !== undefined) {
+        let tmpNode = list.head;
+        while (tmpNode !== null) {
+          newArray.push(tmpNode.value);
+          tmpNode = tmpNode.next;
+        }
+      }
+    });
+    return newArray;
+  }
+
+  entries() {
+    let newArray = [];
+    this.array.forEach((list) => {
+      if (list !== undefined) {
+        let tmpNode = list.head;
+        while (tmpNode !== null) {
+          let keyValueArray = [tmpNode.key, tmpNode.value]
+          newArray.push(keyValueArray);
+          tmpNode = tmpNode.next;
+        }
+      }
+    });
+    return newArray;
+  }
+   
 }
 
 export { HashMap };
