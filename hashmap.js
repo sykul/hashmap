@@ -34,6 +34,7 @@ class HashMap {
         tmpNode = tmpNode.next;
       }
     });
+    this.array = tmpArray.slice();
     this.loadFactor = +(this.arrayUsedSpaces / this.arraySize).toFixed(3);
   }
 
