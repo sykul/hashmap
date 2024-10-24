@@ -35,6 +35,13 @@ class HashMap {
       }
     });
     this.array = tmpArray.slice();
+    this.arrayUsedSpaces = this.array.reduce((acc, elem) => {
+      if (elem !== undefined) {
+        return acc + 1;
+      } else {
+        return acc;
+      }
+    }, 0);
     this.loadFactor = +(this.arrayUsedSpaces / this.arraySize).toFixed(3);
   }
 
