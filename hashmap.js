@@ -88,6 +88,31 @@ class HashMap {
       return listToCheck.deleteNodeByKey(key);
     }
   }
+
+  length() {
+    let arrayOfListCounts = this.array.map((elem) => {
+      if (elem === undefined) {
+        return 0;
+      } else {
+        return elem.length;
+      }
+    }, 0);
+    let count = arrayOfListCounts.reduce((acc, elem) => {
+      if (elem !== undefined) {
+        return acc + elem;
+      } else {
+        return acc;
+      }
+    }, 0);
+    return count;
+  }
+
+  clear() {
+    this.arraySize = 16;
+    this.arrayUsedSpaces = 0;
+    this.array = []
+    this.loadFactor = 0;
+  }
 }
 
 export { HashMap };
